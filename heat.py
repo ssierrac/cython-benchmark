@@ -4,7 +4,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 # Set the colormap
-plt.rcParams['image.cmap'] = 'coolwarm' 
+plt.rcParams['image.cmap'] = 'jet' 
 
 def evolve(u, u_previous, a, dt, dx2, dy2):
     """Explicit time evolution.
@@ -23,7 +23,7 @@ def evolve(u, u_previous, a, dt, dx2, dy2):
 
     u_previous[:] = u[:]
 
-def iterate(file, field, field0, a, dx, dy, timesteps, image_interval):
+def iterate(field, field0, a, dx, dy, timesteps):
     """Run fixed number of time steps of heat equation"""
 
     dx2 = dx**2
@@ -33,10 +33,9 @@ def iterate(file, field, field0, a, dx, dy, timesteps, image_interval):
     # for the size of the time-step:
     dt = dx2*dy2 / ( 2*a*(dx2+dy2) )    
 
-    for m in range(1, timesteps+1):
+    for _ in range(1, timesteps+1):
         evolve(field, field0, a, dt, dx2, dy2)
-        if m % image_interval == 0:
-            write_field(file, field, m)
+
 
 def init_fields(filename):
     # Read the initial temperature field from file
