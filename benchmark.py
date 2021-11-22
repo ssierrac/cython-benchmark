@@ -10,9 +10,9 @@ def main():
     data_path = './data/'
     output_path = './outputs/'
     output_file = 'data.xlsx'
-    programs = ['python', 'cython']
+    programs = ['cython', 'python']
     bottles = ['bottle', 'bottle_medium', 'bottle_large']
-    timesteps = [100, 200, 400, 800, 1000]
+    timesteps = [200]
     data = np.zeros((n * len(bottles), len(timesteps)+1))
 
     if os.path.exists(output_path+output_file):
